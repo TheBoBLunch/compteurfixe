@@ -1,0 +1,36 @@
+<div style="text-align:center">
+  <router-outlet></router-outlet>
+</div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="up">Up</a></li>
+        <li routerLinkActive="active"><a routerLink="down">Down</a></li>
+        <li routerLinkActive="active"><a routerLink="reset">Reset</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container">
+  
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+        <b><p> Compteur : {{ counterService.count }}</p></b>
+        <p> Nombre d'actions (de clics) : {{ counterActionService.count }}</p>
+        <div *ngIf="getUrl() != '/reset'">
+          <button (click)="proceed()" class="btn btn-dark">PUSH</button>
+        </div>
+      </div>
+    </div>
+
+  <div *ngIf="getUrl() === '/reset'">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-2">
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        	<div class="form-group">Entrez votre date de naissance
+          <input type="date" id="dateN" class="form-control" name="dateN" ngModel required>
+          </div>
+          <button class="btn btn-primary" type="submit">Enregistrer</button>
+        </form>
+      </div>
+    </div>
+</div>
